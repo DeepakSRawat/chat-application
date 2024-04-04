@@ -5,8 +5,9 @@ import {
   TouchableOpacity,
   Pressable,
   Alert,
+  ActivityIndicator,
 } from "react-native";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,11 +16,14 @@ import { StatusBar } from "expo-status-bar";
 import { Octicons } from "@expo/vector-icons";
 import { TextInput } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
+import Loading from "../components/Loading";
+import CustomKeyboardView from "../components/CustomKeyboardView";
 
 export default function SignIn() {
   const router = useRouter();
   const emailRef = useRef("");
   const passwordRef = useRef("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
     if (!emailRef.current || !passwordRef.current) {
@@ -30,7 +34,7 @@ export default function SignIn() {
     //
   };
   return (
-    <View className="flex-1">
+    <CustomKeyboardView>
       <StatusBar style="dark" />
       <View
         style={{ paddingTop: hp(8), paddingHorizontal: wp(5) }}
@@ -90,22 +94,34 @@ export default function SignIn() {
               </Text>
             </View>
             {/* submit button */}
-            <View className="bg-indigo-500 rounded-xl">
-              <TouchableOpacity
-                onPress={handleLogin}
-                style={{
-                  height: hp(6.5),
-                  justifyContent: "center",
-                }}
-              >
-                <Text
-                  style={{ fontSize: hp(2.7) }}
-                  className="text-white font-bold tracking-wider text-center"
-                >
-                  Sign In
-                </Text>
-              </TouchableOpacity>
+            <View>
+              {loading ? (
+                <View className="flex-row justify-center">
+                  <ActivityIndicator
+                    size={hp(6.5)}
+                    className="text-indigo-500"
+                  />
+                </View>
+              ) : (
+                <View className="bg-indigo-500 rounded-xl">
+                  <TouchableOpacity
+                    onPress={handleLogin}
+                    style={{
+                      height: hp(6.5),
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Text
+                      style={{ fontSize: hp(2.7) }}
+                      className="text-white font-bold tracking-wider text-center"
+                    >
+                      Sign In
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
+
             {/* signUp text */}
             <View className="flex-row justify-center gap-1">
               <Text
@@ -119,13 +135,13 @@ export default function SignIn() {
                   style={{ fontSize: hp(1.8) }}
                   className="font-bold text-neutral-500 text-indigo-500"
                 >
-                  SignUp
+                  Sign Up
                 </Text>
               </Pressable>
             </View>
           </View>
         </View>
       </View>
-    </View>
+    </CustomKeyboardView>
   );
 }
