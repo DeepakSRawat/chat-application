@@ -9,16 +9,24 @@ import {
   ScrollView,
 } from "react-native";
 
-const KeyboardAvoidingComponent = ({ children }) => {
+const KeyboardAvoidingComponent = ({ children, inChat }) => {
+  let kavConfig = {}; //keyboard avoiding view
+  let scrollViewConfig = {};
+  if (inChat) {
+    kavConfig = { keyboardVerticalOffset: 70 };
+    scrollViewConfig = { contentContainerStyle: { flex: 1 } };
+  }
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
+      {...kavConfig}
     >
       <ScrollView
         style={{ flex: 1 }}
         bounces={false}
         showsVerticalScrollIndicator={false}
+        {...scrollViewConfig}
       >
         {children}
       </ScrollView>
