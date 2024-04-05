@@ -18,12 +18,14 @@ import { TextInput } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
 import Loading from "../components/Loading";
 import CustomKeyboardView from "../components/CustomKeyboardView";
+import { useAuth } from "../context/authContext";
 
 export default function SignIn() {
   const router = useRouter();
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const handleLogin = async () => {
     if (!emailRef.current || !passwordRef.current) {
@@ -31,7 +33,14 @@ export default function SignIn() {
       return;
     }
 
-    //
+    setLoading(true);
+    const response = await login(emailRef.current, passwordRef.current);
+    setLoading(false);
+    console.log("Sign in response:", response);
+    if (!response.success) {
+      Alert.alert("Sign In", response.msg);
+    }
+    //login process
   };
   return (
     <CustomKeyboardView>
@@ -133,7 +142,7 @@ export default function SignIn() {
               <Pressable onPress={() => router.push("signUp")}>
                 <Text
                   style={{ fontSize: hp(1.8) }}
-                  className="font-bold text-neutral-500 text-indigo-500"
+                  className="font-bold text-indigo-500"
                 >
                   Sign Up
                 </Text>
