@@ -139,10 +139,11 @@ export default function SignUp() {
             <View>
               {loading ? (
                 <View className="flex-row justify-center">
-                  <ActivityIndicator
+                  <Loading size={hp(10)} />
+                  {/* <ActivityIndicator
                     size={hp(6.5)}
                     className="text-indigo-500"
-                  />
+                  /> */}
                 </View>
               ) : (
                 <View className="bg-indigo-500 rounded-xl">

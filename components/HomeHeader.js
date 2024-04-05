@@ -30,16 +30,16 @@ export default function HomeHeader() {
     <View
       style={{
         paddingTop: ios ? top : top + 10,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        paddingHorizontal: 10,
-        paddingBottom: 15,
-        borderBottomRightRadius: 15,
-        borderBottomLeftRadius: 15,
+        // flexDirection: "row",
+        // justifyContent: "space-between",
+        // paddingHorizontal: 10,
+        // paddingBottom: 15,
+        // borderBottomRightRadius: 15,
+        // borderBottomLeftRadius: 15,
         shadowColor: "black",
         elevation: 20,
       }}
-      className="bg-indigo-500"
+      className="bg-indigo-400 flex-row justify-between px-5 pb-6 rounded-3xl"
     >
       <View>
         <Text style={{ fontSize: hp(3) }} className="font-medium text-white">
@@ -98,15 +98,5 @@ export default function HomeHeader() {
 }
 
 const Divider = () => {
-  return (
-    <View
-      style={{
-        padding: 1,
-        width: "100%",
-        backgroundColor: "grey",
-        opacity: 0.3,
-      }}
-      className="p-[1px] w-full bg-neutral-200"
-    />
-  );
+  return <View className="p-[1px] w-full bg-neutral-200" />;
 };
