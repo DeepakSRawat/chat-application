@@ -43,3 +43,6 @@ expo-env.d.ts
 
 firebaseConfig.js 
 #remove this file due to api key
+
+eas.json
+#it is used at build time
