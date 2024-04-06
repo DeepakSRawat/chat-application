@@ -1,10 +1,28 @@
 # Mobile Chat App
-A react Native app for chat.
-You can run this application in production envirnoment by using folloing command:
-### `npm install`
-After completing that, run the following command to start the app:
-### `npm start android`
-if you are using your physical device instead of android studio. just be sure, your phone's developer option is enable and it is in debugging mode.
 
-this project is still in working phase and incomplete.
+This is a React Native app for chatting. It provides basic chat functionality with four main screens: Sign In, Sign Up, Home, and Chat Room.
 
+**Features:**
+
+- User authentication using Firebase
+- Chat system using Firestore data storage
+
+## Getting Started
+
+### Installation
+
+First, install all the required libraries and dependencies:
+
+```bash
+npm install
+```
+
+#Running the App
+
+To start the app in a development environment on an Android device, use the following command:
+
+```bash
+npm start android
+```
+
+If you're using a physical device instead of an emulator (such as Android Studio), ensure that your phone's developer options are enabled and it's in debugging mode. Connect your phone to your computer via USB.
