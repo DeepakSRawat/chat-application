@@ -39,3 +39,7 @@ yarn-error.*
 
 expo-env.d.ts
 # @end expo-cli
+
+
+firebaseConfig.js 
+#remove this file due to api key
